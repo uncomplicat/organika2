@@ -36,7 +36,7 @@
     "path": "@PROJECT_PATH@",
     "versionFirst": "4.9.7",
     "siteFonts": [],
-    "uniqCompNum": 36,
+    "uniqCompNum": 38,
     "versionPublish": "4.9.7",
     "screenshot": "screenshot.png",
     "favicon": "",
@@ -877,88 +877,115 @@
                 "opacity": "@overlayOpacity"
               }
             },
-            "& when (@transparentBg)": {
-              "amp-accordion section": {
-                "background": "transparent !important",
-                "& > *": {
-                  "border": "none"
-                }
+            "& when (@showTitle)": {
+              ".mbr-title": {
+                "padding-top": "1.5rem",
+                "padding-bottom": "1.5rem"
               }
             },
-            "& when not (@showIcons)": {
-              ".amp-iconfont": {
-                "display": "none !important"
-              }
+            ".amp-iconfont": {
+              "margin": "auto",
+              "color": "@iconsColor",
+              "font-size": "~\"@{iconsSize}rem\""
             },
-            "& when (@showTitle), (@showSubtitle)": {
-              ".mbr-row.text-row": {
-                "padding-bottom": "2rem",
-                "justify-content": "~\"@{textAlign}\""
-              }
-            },
-            ".mbr-row.toggle-row": {
-              "justify-content": "~\"@{togglesAlign}\""
-            },
-            ".mbr-section-subtitle": {
-              "color": "#a2a0a0",
-              "padding": "0",
-              "margin": "0"
-            },
-            ".section-text": {
-              "padding": "2rem",
-              "background": "@bodyBg",
-              "& when (@transparentBg)": {
-                "background": "transparent !important"
-              }
-            },
-            ".section-title": {
-              "padding": "1rem 2rem",
-              "background": "@headBg",
-              "border-color": "@borderColor",
-              "& when (@transparentBg)": {
-                "background": "transparent !important"
-              },
-              "&:focus": {
-                "outline": "none"
-              }
-            },
-            ".iconfont-wrapper": {
-              "position": "relative",
-              "margin-right": "1rem",
+            ".icon-wrap": {
+              "margin": "1.5rem",
               "display": "inline-block",
               "width": "~\"@{iconsSize}rem\"",
               "height": "~\"@{iconsSize}rem\""
-            },
-            ".amp-iconfont": {
-              "font-size": "~\"@{iconsSize}rem !important\""
-            },
-            "amp-accordion section[expanded] .plus-sign": {
-              "display": "none"
-            },
-            "amp-accordion section:not([expanded]) .minus-sign": {
-              "display": "none"
-            },
-            "@media (max-width: 767px)": {
-              ".section-title, .mbr-text": {
-                "padding": "1rem",
-                "text-align": "left"
-              },
-              ".amp-iconfont": {
-                "padding-left": "1rem"
-              }
-            },
-            ".mbr-section-title": {
-              "text-align": "left"
             }
           },
-          "_name": "toggle1",
-          "_customHTML": "<section class=\"toggle1 mbr-section\" group=\"Toggles & Accordions\" plugins=\"amp-main, amp-accordion\" mbr-class=\"{'mbr-fullscreen':fullScreen}\">\n\n    <mbr-parameters>\n    <!-- Block parameters controls (Blue \"Gear\" panel) -->\n        <input type=\"checkbox\" title=\"Full Screen\" name=\"fullScreen\">\n        <input type=\"range\" inline title=\"Top\" name=\"paddingTop\" min=\"0\" max=\"8\" step=\"1\" value=\"4\" condition=\"!fullScreen\">\n        <input type=\"range\" inline title=\"Bottom\" name=\"paddingBottom\" min=\"0\" max=\"8\" step=\"1\" value=\"4\" condition=\"!fullScreen\">\n\n        <input type=\"checkbox\" title=\"Show Title\" name=\"showTitle\" checked>\n        <input type=\"checkbox\" title=\"Show Subtitle\" name=\"showSubtitle\" checked>\n        <select title=\"Text Align\" name=\"textAlign\" condition=\"showTitle || showSubtitle\">\n            <option value=\"flex-start\">Left</option>\n            <option value=\"center\" selected>Center</option>\n            <option value=\"flex-end\">Right</option>\n        </select>\n        <input type=\"range\" inline title=\"Toggles Count\" name=\"togglesCount\" min=\"1\" max=\"8\" step=\"1\" value=\"2\">\n        <input type=\"checkbox\" title=\"Show Icons\" name=\"showIcons\" checked>\n        <input type=\"range\" inline title=\"Icons Size\" name=\"iconsSize\" min=\"1\" max=\"2.8\" step=\"0.2\" value=\"1.8\" condition=\"showIcons\">\n        <select title=\"Toggles Align\" name=\"togglesAlign\">\n            <option value=\"flex-start\">Left</option>\n            <option value=\"center\" selected>Center</option>\n            <option value=\"flex-end\">Right</option>\n        </select>\n        <input type=\"checkbox\" title=\"Toggles BG Transparent\" name=\"transparentBg\" checked>\n        <input type=\"color\" title=\"Toggles Head BG Color\" name=\"headBg\" value=\"#ececec\" condition=\"!transparentBg\">\n        <input type=\"color\" title=\"Toggles Body BG Color\" name=\"bodyBg\" value=\"#cecece\" condition=\"!transparentBg\">\n        <input type=\"color\" title=\"Toggles Border Color\" name=\"borderColor\" value=\"#a2a0a0\" condition=\"!transparentBg\">\n        \n        <fieldset type=\"background\" name=\"bg\">\n          <input type=\"image\" title=\"Background Image\" value=\"../_images/background2.jpg\">\n          <input type=\"color\" title=\"Background Color\" value=\"#f6efe9\" selected>\n        </fieldset>\n\n        <input type=\"checkbox\" title=\"Overlay\" name=\"overlay\" checked condition=\"bg.type!='color'\">\n        <input type=\"color\" title=\"Overlay Color\" name=\"overlayColor\" value=\"#ececec\" condition=\"bg.type!='color' && overlay\">\n        <input type=\"range\" inline title=\"Overlay Opacity\" name=\"overlayOpacity\" min=\"0\" max=\"1\" step=\"0.1\" value=\"0.4\" condition=\"bg.type!='color' && overlay\">\n    <!-- End block parameters -->\n    </mbr-parameters>\n\n    <div class=\"mbr-overlay\" mbr-if=\"overlay && bg.type !== 'color'\"></div>\n    <div class=\"container align-left\">\n        <div class=\"mbr-row text-row\">\n            <div class=\"text-block mbr-col-sm-12 mbr-col-md-12 mbr-col-lg-10 mbr-col-xl-8\">\n                <h2 class=\"mbr-section-title mbr-fonts-style mbr-bold\" mbr-theme-style=\"display-2\" mbr-if=\"showTitle\" data-app-selector=\".mbr-section-title\">Services</h2>\n                <h3 class=\"mbr-section-subtitle mbr-fonts-style mbr-text\" mbr-theme-style=\"display-6\" mbr-if=\"showSubtitle\" data-app-selector=\".mbr-section-subtitle\">The Organika Landscaping team specializes in hardscaping and softscaping, and will work with you to create a liveable and purposeful space that gives you pride, joy and peace of mind.</h3>\n            </div>\n        </div>\n\n        <div class=\"mbr-row toggle-row\">\n            <div class=\"mbr-col-sm-12 mbr-col-md-10 mbr-col-lg-8 mbr-col-xl-6 accordion-wrapper\">\n                <amp-accordion disable-session-states>\n                    <section expanded>\n                        <h2 class=\"section-title mbr-fonts-style\" mbr-theme-style=\"display-5\" data-app-selector=\".section-title\">\n                            <div class=\"iconfont-wrapper\">\n                                <span mbr-icon class=\"amp-iconfont fa-plus fa plus-sign\"></span>\n                                <span mbr-icon class=\"amp-iconfont fa-minus fa minus-sign\"></span>\n                            </div>\n                            Hardscaping</h2>\n                        <p class=\"mbr-text section-text mbr-fonts-style mbr-light\" mbr-theme-style=\"display-7\" data-app-selector=\".section-text\"><b>Garden Beds</b> (Raised, Tiered, Fenced, Pest Proof)<br><b>Timber Decks and Privacy Screens</b> (Wall Panels, Laser Cut, Lattice, Storage Seating)<br><b>Pergolas and Climbing Structures</b> (Wood and Metal)<br><b>Retaining Walls and Rock Gardens</b> <br><b>Water Capture</b> (Irrigation systems and Water Tanks)<br><b>Paving Installation</b> (Bluestone, Red Brick, Crazy Paving, Reclaimed)<br><b>Turf</b> (Natural and Synthetic, laying and selection)<br><b>Pre-Sale Makeovers</b></p>\n                    </section>\n\n                    <section mbr-if=\"togglesCount > 1\">\n                        <h2 class=\"section-title mbr-fonts-style\" mbr-theme-style=\"display-5\" data-app-selector=\".section-title\">\n                            <div class=\"iconfont-wrapper\">\n                                <span mbr-icon class=\"amp-iconfont fa-plus fa plus-sign\"></span>\n                                <span mbr-icon class=\"amp-iconfont fa-minus fa minus-sign\"></span>\n                            </div>\n                            Softscaping</h2>\n                        <p class=\"mbr-text section-text mbr-fonts-style mbr-light\" mbr-theme-style=\"display-7\" data-app-selector=\".section-text\"><b>Flowers, Plants, Shrubs and Trees </b>(Supply, Install and Manage)<br><b>Edible gardens and food forests</b> (Fruits, Vegetables and Herbs)<br><b>Companion Planting</b><br><b>Micro climate suitability</b> (Soil, Sun, Water)&nbsp;</p>\n                    </section>\n\n                    <section mbr-if=\"togglesCount > 2\">\n                        <h2 class=\"section-title mbr-fonts-style\" mbr-theme-style=\"display-7\" data-app-selector=\".section-title\">\n                            <div class=\"iconfont-wrapper\">\n                                <span mbr-icon class=\"amp-iconfont fa-plus fa plus-sign\"></span>\n                                <span mbr-icon class=\"amp-iconfont fa-minus fa minus-sign\"></span>\n                            </div>\n                            Lorem Ipsum                            \n                        </h2>\n                        <p class=\"mbr-text section-text mbr-fonts-style mbr-light\" mbr-theme-style=\"display-7\" data-app-selector=\".section-text\">\n                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. At perspiciatis facilis deleniti alias quos eaque dicta ut hic, quaerat qui, dolor porro laborum iste perferendis sunt soluta quibusdam atque tempora.\n                        </p>\n                    </section>\n\n                    <section mbr-if=\"togglesCount > 3\">\n                        <h2 class=\"section-title mbr-fonts-style\" mbr-theme-style=\"display-7\" data-app-selector=\".section-title\">\n                            <div class=\"iconfont-wrapper\">\n                                <span mbr-icon class=\"amp-iconfont fa-plus fa plus-sign\"></span>\n                                <span mbr-icon class=\"amp-iconfont fa-minus fa minus-sign\"></span>\n                            </div>\n                            Lorem Ipsum                            \n                        </h2>\n                        <p class=\"mbr-text section-text mbr-fonts-style mbr-light\" mbr-theme-style=\"display-7\" data-app-selector=\".section-text\">\n                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. At perspiciatis facilis deleniti alias quos eaque dicta ut hic, quaerat qui, dolor porro laborum iste perferendis sunt soluta quibusdam atque tempora.\n                        </p>\n                    </section>\n\n                    <section mbr-if=\"togglesCount > 4\">\n                        <h2 class=\"section-title mbr-fonts-style\" mbr-theme-style=\"display-7\" data-app-selector=\".section-title\">\n                            <div class=\"iconfont-wrapper\">\n                                <span mbr-icon class=\"amp-iconfont fa-plus fa plus-sign\"></span>\n                                <span mbr-icon class=\"amp-iconfont fa-minus fa minus-sign\"></span>\n                            </div>\n                            Lorem Ipsum\n                        </h2>\n                        <p class=\"mbr-text section-text mbr-fonts-style mbr-light\" mbr-theme-style=\"display-7\" data-app-selector=\".section-text\">\n                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. At perspiciatis facilis deleniti alias quos eaque dicta ut hic, quaerat qui, dolor porro laborum iste perferendis sunt soluta quibusdam atque tempora.\n                        </p>\n                    </section>\n\n                    <section mbr-if=\"togglesCount > 5\">\n                        <h2 class=\"section-title mbr-fonts-style\" mbr-theme-style=\"display-7\" data-app-selector=\".section-title\">\n                            <div class=\"iconfont-wrapper\">\n                                <span mbr-icon class=\"amp-iconfont fa-plus fa plus-sign\"></span>\n                                <span mbr-icon class=\"amp-iconfont fa-minus fa minus-sign\"></span>\n                            </div>\n                            Lorem Ipsum\n                        </h2>\n                        <p class=\"mbr-text section-text mbr-fonts-style mbr-light\" mbr-theme-style=\"display-7\" data-app-selector=\".section-text\">\n                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. At perspiciatis facilis deleniti alias quos eaque dicta ut hic, quaerat qui, dolor porro laborum iste perferendis sunt soluta quibusdam atque tempora.\n                        </p>\n                    </section>\n\n                    <section mbr-if=\"togglesCount > 6\">\n                        <h2 class=\"section-title mbr-fonts-style\" mbr-theme-style=\"display-7\" data-app-selector=\".section-title\">\n                            <div class=\"iconfont-wrapper\">\n                                <span mbr-icon class=\"amp-iconfont fa-plus fa plus-sign\"></span>\n                                <span mbr-icon class=\"amp-iconfont fa-minus fa minus-sign\"></span>\n                            </div>\n                            Lorem Ipsum\n                        </h2>\n                        <p class=\"mbr-text section-text mbr-fonts-style mbr-light\" mbr-theme-style=\"display-7\" data-app-selector=\".section-text\">\n                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. At perspiciatis facilis deleniti alias quos eaque dicta ut hic, quaerat qui, dolor porro laborum iste perferendis sunt soluta quibusdam atque tempora.\n                        </p>\n                    </section>\n\n                    <section mbr-if=\"togglesCount > 7\">\n                        <h2 class=\"section-title mbr-fonts-style\" mbr-theme-style=\"display-7\" data-app-selector=\".section-title\">\n                            <div class=\"iconfont-wrapper\">\n                                <span mbr-icon class=\"amp-iconfont fa-plus fa plus-sign\"></span>\n                                <span mbr-icon class=\"amp-iconfont fa-minus fa minus-sign\"></span>\n                            </div>\n                            Lorem Ipsum                            \n                        </h2>\n                        <p class=\"mbr-text section-text mbr-fonts-style mbr-light\" mbr-theme-style=\"display-7\" data-app-selector=\".section-text\">\n                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. At perspiciatis facilis deleniti alias quos eaque dicta ut hic, quaerat qui, dolor porro laborum iste perferendis sunt soluta quibusdam atque tempora.\n                        </p>\n                    </section>\n                </amp-accordion>\n            </div>\n        </div>\n    </div>\n</section>",
-          "_cid": "rmI3S1Sv8k",
-          "_anchor": "toggle1-a",
+          "_name": "features1",
+          "_customHTML": "<section class=\"mbr-section features1\" group=\"Features\" plugins=\"amp-main\" mbr-class=\"{'mbr-fullscreen':fullScreen}\">\n\n    <mbr-parameters>\n    <!-- Block parameters controls (Blue \"Gear\" panel) -->\n        <input type=\"checkbox\" title=\"Full Screen\" name=\"fullScreen\">\n        <input type=\"range\" inline title=\"Top\" name=\"paddingTop\" min=\"0\" max=\"8\" step=\"1\" value=\"3\" condition=\"!fullScreen\">\n        <input type=\"range\" inline title=\"Bottom\" name=\"paddingBottom\" min=\"0\" max=\"8\" step=\"1\" value=\"0\" condition=\"!fullScreen\">\n        <input type=\"checkbox\" title=\"Show Icons\" name=\"showIcons\">\n        <input type=\"range\" inline title=\"Icons Size\" name=\"iconsSize\" min=\"3\" max=\"15\" step=\"0.1\" value=\"3\" condition=\"showIcons\">\n        <input type=\"color\" title=\"Icons Color\" name=\"iconsColor\" value=\"#ffb1b1\" condition=\"showIcons\">\n        <input type=\"checkbox\" title=\"Show Title\" name=\"showTitle\" checked>\n        <input type=\"checkbox\" title=\"Show Text\" name=\"showText\" checked>\n        <input type=\"checkbox\" title=\"Show Author\" name=\"showAuthor\">\n    \n        <fieldset type=\"background\" name=\"bg\">\n            <input type=\"image\" title=\"Background Image\" value=\"../_images/background2.jpg\">\n            <input type=\"color\" title=\"Background Color\" value=\"#fbf5f1\" selected>\n        </fieldset>\n    \n        <input type=\"checkbox\" title=\"Overlay\" name=\"overlay\" checked condition=\"bg.type!='color'\">\n        <input type=\"color\" title=\"Overlay Color\" name=\"overlayColor\" value=\"#f5edf6\" condition=\"bg.type!='color' && overlay\">\n        <input type=\"range\" inline title=\"Overlay Opacity\" name=\"overlayOpacity\" min=\"0\" max=\"1\" step=\"0.1\" value=\"0.5\" condition=\"bg.type!='color' && overlay\">\n    <!-- End block parameters -->\n    </mbr-parameters>\n    \n    <div class=\"mbr-overlay\" mbr-if=\"overlay && bg.type !== 'color'\"></div>\n    <div class=\"container align-center\">\n        <div class=\"mbr-row mbr-justify-content-center\">\n            <div class=\"mbr-col-md-10 mbr-col-lg-8\">\n              \n                <h2 class=\"mbr-title mbr-fonts-style mbr-bold mbr-black\" mbr-theme-style=\"display-2\" mbr-if=\"showTitle\" data-app-selector=\".mbr-title, .icon-wrap\">\n                    Landscaping</h2>\n                <p mbr-if=\"showText\" data-app-selector=\".block-text\" class=\"mbr-text mbr-fonts-style mbr-black block-text\" mbr-theme-style=\"display-6\">\n                    The Organika Landscaping team specializes in hardscaping and softscaping, and will work with you to create a liveable and purposeful space that gives you pride, joy and peace of mind.\n                </p>\n                <h3 mbr-if=\"showAuthor\" data-app-selector=\".block-subtext\" class=\"mbr-text mbr-fonts-style mbr-black block-subtext\" mbr-theme-style=\"display-7\">\n                    – Mobirise.\n                </h3>\n            </div>\n        </div>\n    </div>\n</section>",
+          "_cid": "rp24NHBth1",
+          "_anchor": "features1-11",
+          "_PHPplaceholders": [],
+          "_JSplaceholders": [],
           "_protectedParams": [],
           "_global": false,
           "_once": false,
           "_params": {}
+        },
+        {
+          "alias": false,
+          "_styles": {
+            "padding-top": "(@paddingTop * 15px)",
+            "padding-bottom": "(@paddingBottom * 15px)",
+            "& when (@bg-type = 'color')": {
+              "background-color": "@bg-value"
+            },
+            "& when (@bg-type = 'image')": {
+              "background-image": "url(@bg-value)",
+              ".mbr-overlay": {
+                "background": "@overlayColor",
+                "opacity": "@overlayOpacity"
+              }
+            },
+            ".main-row": {
+              "-webkit-justify-content": "center",
+              "justify-content": "center",
+              "-webkit-align-items": "flex-start",
+              "align-items": "flex-start"
+            },
+            ".card-title": {
+              "text-align": "left",
+              "margin-bottom": "1rem"
+            },
+            ".mbr-text": {
+              "color": "#7f7e7e",
+              "text-align": "left",
+              "margin": "0",
+              "padding": "0"
+            },
+            ".card-img": {
+              "-webkit-flex-shrink": "0",
+              "flex-shrink": "0",
+              "display": "inline-block",
+              "margin-right": "1rem",
+              "width": "~\"@{iconsSize}rem\"",
+              "height": "~\"@{iconsSize}rem\""
+            },
+            ".card-box": {
+              "padding-left": "1rem",
+              "word-break": "break-word"
+            },
+            ".card-row": {
+              "-webkit-flex-wrap": "nowrap",
+              "flex-wrap": "nowrap",
+              "display": "flex"
+            },
+            ".amp-iconfont": {
+              "color": "@iconsColor",
+              "font-size": "~\"@{iconsSize}rem\""
+            },
+            "@media (max-width: 991px)": {
+              ".card-img": {
+                "margin-bottom": "0.75rem"
+              },
+              ".card-box": {
+                "padding-left": "0"
+              },
+              ".first-row-card": {
+                "padding-bottom": "2rem"
+              }
+            },
+            "@media (max-width: 767px)": {
+              ".card:not(.last-child)": {
+                "padding-bottom": "2rem"
+              }
+            },
+            ".card-title, .card-img": {
+              "text-align": "center"
+            }
+          },
+          "_name": "features5",
+          "_customHTML": "<section class=\"features5\" group=\"Features\" plugins=\"amp-main\">\n\n    <mbr-parameters>\n    <!-- Block parameters controls (Blue \"Gear\" panel) -->\n        <input type=\"range\" inline title=\"Top\" name=\"paddingTop\" min=\"0\" max=\"9\" step=\"1\" value=\"2\">\n        <input type=\"range\" inline title=\"Bottom\" name=\"paddingBottom\" min=\"0\" max=\"9\" step=\"1\" value=\"6\">\n        <input type=\"checkbox\" title=\"Show Title\" name=\"showTitle\" checked>\n        <input type=\"checkbox\" title=\"Show Text\" name=\"showText\" checked>\n        <input type=\"checkbox\" title=\"Show Icons\" name=\"showIcons\">       \n        <input type=\"range\" inline title=\"Icons Size\" name=\"iconsSize\" min=\"1\" max=\"6\" step=\"0.2\" value=\"5\" condition=\"showIcons\">\n        <input type=\"color\" title=\"Icons Color\" name=\"iconsColor\" value=\"#ffb1b1\" condition=\"showIcons\">\n        <select title=\"Cards\" name=\"cardsAmount\">\n            <option value=\"1\">1</option>\n            <option value=\"2\" selected>2</option>\n            <option value=\"3\">3</option>\n        </select>\n        <fieldset type=\"background\" name=\"bg\">\n            <input type=\"image\" title=\"Background Image\" value=\"../_images/background2.jpg\">\n            <input type=\"color\" title=\"Background Color\" value=\"#fbf5f1\" selected>\n        </fieldset> \n        <input type=\"checkbox\" title=\"Overlay\" name=\"overlay\" condition=\"bg.type !== 'color'\">\n        <input type=\"color\" title=\"Overlay Color\" name=\"overlayColor\" value=\"#ececec\" condition=\"overlay && bg.type !== 'color'\">\n        <input type=\"range\" inline title=\"Opacity\" name=\"overlayOpacity\" min=\"0\" max=\"1\" step=\"0.1\" value=\"0.8\" condition=\"overlay && bg.type !== 'color'\">\n    <!-- End block parameters -->\n    </mbr-parameters>\n\n    <div class=\"mbr-overlay\" mbr-if=\"overlay && bg.type !== 'color'\">\n    </div>\n    <div class=\"container\">\n        <div class=\"mbr-row main-row\">\n            <div class=\"card col-12 mbr-col-md-6\" mbr-class=\"{'mbr-col-lg-3': cardsAmount == '4',\n                             'mbr-col-lg-4': cardsAmount == '3',\n                             'first-row-card': cardsAmount > 2,\n                             'last-child': cardsAmount == 1}\">\n                <div class=\"card-row\">\n                    <div class=\"card-img\" mbr-if=\"showIcons\">\n                        <span mbr-icon class=\"amp-iconfont fa-code fa\"></span>\n                    </div>\n                    <div class=\"card-box\">\n                        <h4 class=\"card-title mbr-fonts-style\" mbr-theme-style=\"display-5\" mbr-if=\"showTitle\" data-app-selector=\".card-title, .card-img\">\n                            Hardscaping</h4>\n                        <p class=\"mbr-text mbr-fonts-style\" mbr-theme-style=\"display-7\" mbr-if=\"showText\" data-app-selector=\".mbr-text\"><b>🍃 Garden Beds </b>(Raised, Tiered, Fenced, Pest Proof)<br>🍃&nbsp;<b>Timber Decks and Privacy Screens </b>(Wall Panels, Laser Cut, Lattice, Storage Seating)<br>🍃&nbsp;<b>Pergolas and Climbing Structures </b>(Wood and Metal)<br>🍃&nbsp;<b>Retaining Walls and Rock Gardens</b> <br>🍃&nbsp;<b>Water Capture</b> (Irrigation systems and Water Tanks)<br>🍃&nbsp;<b>Paving Installation</b> (Bluestone, Red Brick, Crazy Paving, Reclaimed)<br>🍃&nbsp;<b>Turf</b> (Natural and Synthetic, laying and selection)<br>🍃 <b>Pre-Sale Makeovers</b></p>\n                    </div>\n                </div>\n            </div>\n\n            <div class=\"card col-12 mbr-col-md-6\" mbr-if=\"cardsAmount > 1\" mbr-class=\"{'mbr-col-lg-3': cardsAmount == '4',\n                             'mbr-col-lg-4': cardsAmount == '3',\n                             'first-row-card': cardsAmount > 2,\n                             'last-child': cardsAmount == 2}\">\n                <div class=\"card-row\">\n                    <div class=\"card-img\" mbr-if=\"showIcons\">\n                        <span mbr-icon class=\"amp-iconfont fa-mobile-phone fa\"></span>\n                    </div>\n                    <div class=\"card-box\">\n                        <h4 class=\"card-title mbr-fonts-style\" mbr-theme-style=\"display-5\" mbr-if=\"showTitle\" data-app-selector=\".card-title, .card-img\">\n                            Softscaping</h4>\n                        <p class=\"mbr-text mbr-fonts-style\" mbr-theme-style=\"display-7\" mbr-if=\"showText\" data-app-selector=\".mbr-text\">❧&nbsp;<b>Flowers, Plants, Shrubs and Trees </b>(Supply, Install and Manage)<br>❧&nbsp;<b>Edible gardens and food forests</b> (Fruits, Vegetables and Herbs)<br>❧&nbsp;<b>Companion Planting<br></b>❧&nbsp;<b>Micro climate suitability</b> (Soil, Sun, Water)&nbsp;</p>\n                    </div>\n                </div>\n            </div>\n\n            <div class=\"card col-12 mbr-col-md-6\" mbr-if=\"cardsAmount > 2\" mbr-class=\"{'mbr-col-lg-3': cardsAmount == '4',\n                             'mbr-col-lg-4': cardsAmount == '3',\n                             'last-child': cardsAmount == 3}\">\n                <div class=\"card-row\">\n                    <div class=\"card-img\" mbr-if=\"showIcons\">\n                        <span mbr-icon class=\"amp-iconfont fa-dashboard fa\"></span>\n                    </div>\n                    <div class=\"card-box\">\n                        <h4 class=\"card-title mbr-fonts-style\" mbr-theme-style=\"display-5\" mbr-if=\"showTitle\" data-app-selector=\".card-title, .card-img\">\n                            Fast Speed\n                        </h4>\n                        <p class=\"mbr-text mbr-fonts-style\" mbr-theme-style=\"display-7\" mbr-if=\"showText\" data-app-selector=\".mbr-text\">\n                           Mobirise offers many site blocks in several themes, and though these blocks are pre-made, they are flexible.\n                        </p>\n                    </div>\n                </div>\n            </div>\n\n        </div>\n    </div>\n</section>",
+          "_cid": "rp245RYYK2",
+          "_protectedParams": [],
+          "_global": false,
+          "_once": false,
+          "_params": {},
+          "_anchor": "features5-10"
         },
         {
           "alias": false,
